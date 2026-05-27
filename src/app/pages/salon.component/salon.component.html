@@ -1,0 +1,52 @@
+<mat-toolbar>
+  
+  <span>WarsawBeautySalonExplorer</span>
+  <button matButton="filled" (click)="goToAddSalon()">Dodaj salon</button>
+
+</mat-toolbar>
+<table mat-table [dataSource]="(salons$ | async) ?? []" class="mat-elevation-z2">
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>Nazwa</th>
+    <td mat-cell *matCellDef="let salon">{{ salon.name }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="address">
+    <th mat-header-cell *matHeaderCellDef>Adres</th>
+    <td mat-cell *matCellDef="let salon">{{ salon.address }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="district">
+    <th mat-header-cell *matHeaderCellDef>Dzielnica</th>
+    <td mat-cell *matCellDef="let salon">{{ salon.district }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="phoneNumber">
+    <th mat-header-cell *matHeaderCellDef>Telefon</th>
+    <td mat-cell *matCellDef="let salon">{{ salon.phoneNumber }}</td>
+  </ng-container>
+ 
+  <ng-container matColumnDef="services">
+    <th mat-header-cell *matHeaderCellDef>Usługi</th>
+    <td mat-cell *matCellDef="let salon">{{ salon.services }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="priceRange">
+    <th mat-header-cell *matHeaderCellDef>Ceny</th>
+    <td mat-cell *matCellDef="let salon">{{ salon.priceRange }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="rating">
+    <th mat-header-cell *matHeaderCellDef>Ocena</th>
+    <td mat-cell *matCellDef="let salon">{{ salon.rating }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="reviewCount">
+    <th mat-header-cell *matHeaderCellDef>Opinie</th>
+    <td mat-cell *matCellDef="let salon">{{ salon.reviewCount }}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
