@@ -1,0 +1,55 @@
+<button matButton (click)="goToAll()">Powrót</button>
+
+<mat-card>
+    <h2>Edytuj salon</h2>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
+        <mat-form-field appearance="outline">
+            <mat-label>Nazwa</mat-label>
+            <input matInput formControlName="name">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Adres</mat-label>
+            <input matInput formControlName="address">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Dzielnica</mat-label>
+            <input matInput formControlName="district">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Telefon</mat-label>
+            <input matInput formControlName="phoneNumber">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Strona WWW</mat-label>
+            <input matInput formControlName="websiteUrl">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Usługi</mat-label>
+            <input matInput formControlName="services">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Zakres cen</mat-label>
+            <input matInput formControlName="priceRange">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Ocena</mat-label>
+            <input matInput type="number" formControlName="rating">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="opinion-field">
+            <mat-label>Liczba opinii</mat-label>
+            <input matInput type="number" formControlName="reviewCount">
+        </mat-form-field>
+        <button matButton="filled" type="submit" class="saveBtn" [disabled]="form.pristine || form.invalid">
+            Zapisz zmiany
+        </button>
+    </form>
+</mat-card>

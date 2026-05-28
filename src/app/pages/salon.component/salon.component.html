@@ -1,10 +1,20 @@
 <mat-toolbar>
-  
   <span>WarsawBeautySalonExplorer</span>
-  <button matButton="filled" (click)="goToAddSalon()">Dodaj salon</button>
 
+  <form [formGroup]="searchForm" class="search-form">
+    <mat-form-field appearance="outline">
+      <mat-label>Wyszukaj</mat-label>
+      <input
+        matInput
+        formControlName="search"
+        placeholder="np. Mokotów, Nails, Beauty">
+    </mat-form-field>
+  </form>
+
+  <button matButton="filled" (click)="goToAddSalon()">Dodaj salon</button>
 </mat-toolbar>
-<table mat-table [dataSource]="(salons$ | async) ?? []" class="mat-elevation-z2">
+
+<table mat-table [dataSource]="(filteredSalons$ | async) ?? []" class="mat-elevation-z2">
 
   <ng-container matColumnDef="name">
     <th mat-header-cell *matHeaderCellDef>Nazwa</th>
@@ -25,7 +35,7 @@
     <th mat-header-cell *matHeaderCellDef>Telefon</th>
     <td mat-cell *matCellDef="let salon">{{ salon.phoneNumber }}</td>
   </ng-container>
- 
+
   <ng-container matColumnDef="services">
     <th mat-header-cell *matHeaderCellDef>Usługi</th>
     <td mat-cell *matCellDef="let salon">{{ salon.services }}</td>
@@ -46,7 +56,26 @@
     <td mat-cell *matCellDef="let salon">{{ salon.reviewCount }}</td>
   </ng-container>
 
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef>Akcje</th>
+
+    <td mat-cell *matCellDef="let salon">
+      <button
+        mat-button
+        color="primary"
+        [routerLink]="['/salons', salon.id]">
+        Szczegóły
+      </button>
+
+      <button
+        mat-button
+        color="accent"
+        [routerLink]="['/salons', salon.id, 'edit']">
+        Edytuj
+      </button>
+    </td>
+  </ng-container>
+
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
-

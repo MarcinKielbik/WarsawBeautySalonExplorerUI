@@ -1,0 +1,57 @@
+<button matButton (click)="goToAll()">Powrót</button>
+
+
+<mat-card *ngIf="salon$ | async as salon" class="details-card">
+  <h2>{{ salon.name }}</h2>
+
+  <div class="details-grid">
+    <p>
+      <strong>Adres: </strong>
+      <span>{{ salon.address }}</span>
+    </p>
+
+    <p>
+      <strong>Dzielnica: </strong>
+      <span>{{ salon.district }}</span>
+    </p>
+
+    <p>
+      <strong>Telefon: </strong>
+      <span>{{ salon.phoneNumber || 'Brak danych' }}</span>
+    </p>
+
+    <p>
+      <strong>Strona WWW: </strong>
+      <span>{{ salon.websiteUrl || 'Brak danych' }}</span>
+    </p>
+
+    <p>
+      <strong>Usługi: </strong>
+      <span>{{ salon.services || 'Brak danych' }}</span>
+    </p>
+
+    <p>
+      <strong>Zakres cen: </strong>
+      <span>{{ salon.priceRange || 'Brak danych' }}</span>
+    </p>
+
+    <p>
+      <strong>Ocena: </strong>
+      <span>{{ salon.rating ?? 'Brak danych' }}</span>
+    </p>
+
+    <p>
+      <strong>Liczba opinii: </strong>
+      <span>{{ salon.reviewCount ?? 'Brak danych' }}</span>
+    </p>
+  </div>
+
+  <div class="actions">
+    <a
+      mat-raised-button
+      color="primary"
+      [routerLink]="['/salons', salon.id, 'edit']">
+      Edytuj
+    </a>
+  </div>
+</mat-card>

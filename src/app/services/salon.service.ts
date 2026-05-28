@@ -18,6 +18,14 @@ export class SalonService {
     return this.http.get<Salon[]>(this.apiUrl);
   }
 
+  getById(id: number): Observable<Salon> {
+    return this.http.get<Salon>(`${this.apiUrl}/${id}`);
+  }
+
+  updateSalon(id: number, salon: Salon): Observable<void> {
+    return this.http.put<void>(`${this.apiUrl}/${id}`, salon);
+  }
+
   addSalon(salon: Salon): Observable<Salon> {
     return this.http.post<Salon>(this.apiUrl, salon);
   }

@@ -65,6 +65,5 @@ export class AddSalon {
 
   goToAll(): void {
     this.router.navigate(['/salons']);
-
   }
 }

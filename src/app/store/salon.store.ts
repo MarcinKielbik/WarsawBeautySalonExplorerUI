@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, tap } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { Salon } from '../interfaces/salon';
 import { SalonService } from '../services/salon.service';
 
@@ -22,6 +22,9 @@ export class SalonStore {
         });
     }
 
+
+
+
     addSalon(salon: Salon): void {
         this.salonApiService.addSalon(salon).subscribe({
             next: createdSalon => {
@@ -30,5 +33,15 @@ export class SalonStore {
             },
             error: error => console.error('Error adding salon', error)
         });
+    }
+
+
+
+    getSalonById(id: number): Observable<Salon> {
+        return this.salonApiService.getById(id);
+    }
+
+    updateSalon(id: number, salon: Salon): Observable<void> {
+        return this.salonApiService.updateSalon(id, salon);
     }
 }
